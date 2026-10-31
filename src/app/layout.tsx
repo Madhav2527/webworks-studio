@@ -94,9 +94,12 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
-      <body className="bg-obsidian text-off-white antialiased">
+      <body
+        className="bg-obsidian text-off-white antialiased min-h-screen"
+        style={{ backgroundColor: "#060707", color: "#ECEFEA" }}
+      >
         <Navigation />
-        <main>{children}</main>
+        {children}
         <Footer />
       </body>
     </html>

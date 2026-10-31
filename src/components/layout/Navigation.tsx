@@ -54,8 +54,10 @@ export default function Navigation() {
           aria-label="Main navigation"
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group" aria-label="Webworks Studio — Home">
-            <Logo className="w-8 h-8" />
+          <Link href="/" className="flex items-center gap-3 group flex-shrink-0" aria-label="Webworks Studio — Home">
+            <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center">
+              <Logo className="w-8 h-8" />
+            </div>
             <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-off-white/80 group-hover:text-lime transition-colors duration-300">
               Webworks Studio
             </span>

@@ -28,8 +28,10 @@ export default function Footer() {
         <div className="py-16 grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-off-white/10">
           {/* Brand */}
           <div className="md:col-span-4">
-            <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <Logo className="w-8 h-8" />
+            <Link href="/" className="flex items-center gap-3 mb-6 group flex-shrink-0">
+              <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center">
+                <Logo className="w-8 h-8" />
+              </div>
               <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-off-white/60 group-hover:text-lime transition-colors">
                 Webworks Studio
               </span>

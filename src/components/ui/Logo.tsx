@@ -10,8 +10,18 @@ export default function Logo({ className = "w-8 h-8", showMark = true }: LogoPro
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 40 40"
+      width={32}
+      height={32}
       fill="none"
       className={className}
+      style={{
+        width: "2rem",
+        height: "2rem",
+        minWidth: "2rem",
+        minHeight: "2rem",
+        flexShrink: 0,
+        display: "inline-block",
+      }}
       aria-label="Webworks Studio mark"
       role="img"
     >
