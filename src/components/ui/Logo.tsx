@@ -21,7 +21,7 @@ export default function Logo({ className = "w-8 h-8", showMark = true }: LogoPro
         y="1"
         width="38"
         height="38"
-        stroke="#D5FF36"
+        stroke="#00F5D4"
         strokeWidth="0.75"
       />
       {/* Diagonal slash — bold identity mark */}
@@ -30,21 +30,21 @@ export default function Logo({ className = "w-8 h-8", showMark = true }: LogoPro
         y1="32"
         x2="32"
         y2="8"
-        stroke="#D5FF36"
+        stroke="#00F5D4"
         strokeWidth="3"
         strokeLinecap="square"
       />
       {/* Bottom-left dot */}
-      <rect x="7" y="29" width="3" height="3" fill="#D5FF36" />
+      <rect x="7" y="29" width="3" height="3" fill="#00F5D4" />
       {/* Top-right dot */}
-      <rect x="30" y="8" width="3" height="3" fill="#D5FF36" />
+      <rect x="30" y="8" width="3" height="3" fill="#00F5D4" />
       {/* Horizontal crossbar */}
       <line
         x1="10"
         y1="20"
         x2="30"
         y2="20"
-        stroke="#D5FF36"
+        stroke="#00F5D4"
         strokeWidth="0.75"
         strokeDasharray="2 3"
       />

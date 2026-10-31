@@ -122,9 +122,9 @@ export default function NoirPage() {
               <h2 className="font-grotesk font-bold text-3xl md:text-4xl mt-4 tracking-tight">Autumn Degustation Menu</h2>
             </div>
             <div className="flex items-center gap-4">
-              <span className="font-mono text-xs text-[#C4A882]">Nine Courses — £145</span>
+              <span className="font-mono text-xs text-[#C4A882]">Nine Courses — ₹ 14,500</span>
               <span className="h-4 w-px bg-off-white/15" />
-              <span className="font-mono text-xs text-off-white/40">Wine Pairing — £95</span>
+              <span className="font-mono text-xs text-off-white/40">Pairing Experience — ₹ 8,500</span>
             </div>
           </div>
 

@@ -8,10 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        obsidian: "#0B0D0C",
-        lime: "#D5FF36",
-        graphite: "#171B19",
-        "off-white": "#E8EAE5",
+        obsidian: "#060707",
+        black: "#000000",
+        lime: "#00F5D4", // Mint blue accent token for complete system compatibility
+        mint: "#00F5D4", // Mint blue primary accent
+        graphite: "#0E1111",
+        "off-white": "#ECEFEA",
       },
       fontFamily: {
         grotesk: ["var(--font-space-grotesk)", "sans-serif"],
@@ -21,8 +23,8 @@ module.exports = {
       fontSize: {
         "10xl": ["10rem", { lineHeight: "0.9" }],
         "11xl": ["12rem", { lineHeight: "0.88" }],
-        "display": ["clamp(3rem, 8vw, 7rem)", { lineHeight: "0.92" }],
-        "display-lg": ["clamp(4rem, 12vw, 10rem)", { lineHeight: "0.88" }],
+        "display": ["clamp(2.75rem, 7vw, 6.5rem)", { lineHeight: "0.92" }],
+        "display-lg": ["clamp(3rem, 7.5vw, 7.5rem)", { lineHeight: "0.88" }],
       },
       spacing: {
         "18": "4.5rem",
@@ -60,7 +62,7 @@ module.exports = {
         "fade-up": "fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "fade-in": "fade-in 0.6s ease forwards",
         "line-expand": "line-expand 1s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "spin-slow": "spin-slow 20s linear infinite",
+        "spin-slow": "spin-slow 24s linear infinite",
       },
     },
   },

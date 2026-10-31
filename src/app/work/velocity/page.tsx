@@ -151,9 +151,9 @@ export default function VelocityPage() {
           {/* Inventory grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-off-white/10">
             {[
-              { name: "Model S-12", type: "Gran Turismo", power: "520 hp", price: "From £ 78,500" },
-              { name: "Sport R-8", type: "Sports Coupe", power: "680 hp", price: "From £ 112,000" },
-              { name: "Meridian X", type: "Executive Sedan", power: "420 hp", price: "From £ 65,000" },
+              { name: "Model S-12", type: "Gran Turismo", power: "520 hp", price: "From ₹ 85,00,000" },
+              { name: "Sport R-8", type: "Sports Coupe", power: "680 hp", price: "From ₹ 1,25,00,000" },
+              { name: "Meridian X", type: "Executive Sedan", power: "420 hp", price: "From ₹ 72,00,000" },
             ].map((vehicle) => (
               <div key={vehicle.name} className="bg-obsidian p-6 group cursor-pointer hover:bg-graphite transition-colors duration-300">
                 <div className="aspect-[4/3] bg-[#0A0A0A] border border-off-white/8 mb-6 flex items-center justify-center overflow-hidden">
@@ -205,7 +205,7 @@ export default function VelocityPage() {
           <div className="lg:col-span-5 bg-obsidian p-8 lg:p-10">
             <p className="font-mono text-[10px] tracking-widest uppercase text-off-white/30 mb-2">Gran Turismo</p>
             <h3 className="font-grotesk font-bold text-3xl tracking-tight mb-2" style={{ color: "#C8A96E" }}>Model S-12</h3>
-            <p className="font-grotesk font-bold text-2xl text-off-white/80 mb-8">From £78,500</p>
+            <p className="font-grotesk font-bold text-2xl text-off-white/80 mb-8">From ₹85,00,000</p>
 
             <div className="space-y-3 mb-8">
               {[
