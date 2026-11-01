@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEBWORKS STUDIO — Engineered For What's Next</title>
+  <meta name="description" content="Independent technology and development studio. We design and build digital experiences, websites and web applications that are engineered for what's next.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23060707'/%3E%3Crect x='2' y='2' width='36' height='36' stroke='%2300F5D4' stroke-width='1' fill='none'/%3E%3Cline x1='8' y1='32' x2='32' y2='8' stroke='%2300F5D4' stroke-width='3' stroke-linecap='square'/%3E%3Crect x='7' y='29' width='3' height='3' fill='%2300F5D4'/%3E%3Crect x='30' y='8' width='3' height='3' fill='%2300F5D4'/%3E%3Cline x1='10' y1='20' x2='30' y2='20' stroke='%2300F5D4' stroke-width='1' stroke-dasharray='2 3'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#060707',
+            black: '#000000',
+            lime: '#00F5D4',
+            mint: '#00F5D4',
+            graphite: '#0E1111',
+            'off-white': '#ECEFEA'
+          },
+          fontFamily: {
+            grotesk: ['"Space Grotesk"', 'sans-serif'],
+            inter: ['"Inter"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #060707;
+      color: #ECEFEA;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    ::selection {
+      background: #00F5D4;
+      color: #060707;
+    }
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #060707;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #00F5D4;
+    }
+    .grid-overlay {
+      background-image: 
+        linear-gradient(rgba(0, 245, 212, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 245, 212, 0.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #00F5D4;
+      color: #060707;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.875rem 1.75rem;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-primary:hover {
+      background: #ECEFEA;
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.3);
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: #ECEFEA;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.875rem 1.75rem;
+      border: 0.5px solid rgba(236, 239, 234, 0.3);
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-outline:hover {
+      border-color: #00F5D4;
+      color: #00F5D4;
+      transform: translateY(-1px);
+      box-shadow: 0 0 15px rgba(0, 245, 212, 0.15);
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinSlowReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    .spin-ring-1 {
+      animation: spinSlow 32s linear infinite;
+      transform-origin: 260px 260px;
+    }
+    .spin-ring-2 {
+      animation: spinSlowReverse 22s linear infinite;
+      transform-origin: 260px 260px;
+    }
+  </style>
+</head>
+<body class="bg-obsidian text-off-white antialiased min-h-screen">
+
+  <!-- Header & Navigation -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-obsidian/90 backdrop-blur-md border-b border-off-white/10">
+    <nav class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3 group flex-shrink-0" aria-label="Webworks Studio — Home">
+        <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="32" height="32" fill="none" class="w-8 h-8">
+            <rect x="1" y="1" width="38" height="38" stroke="#00F5D4" stroke-width="0.75"/>
+            <line x1="8" y1="32" x2="32" y2="8" stroke="#00F5D4" stroke-width="3" stroke-linecap="square"/>
+            <rect x="7" y="29" width="3" height="3" fill="#00F5D4"/>
+            <rect x="30" y="8" width="3" height="3" fill="#00F5D4"/>
+            <line x1="10" y1="20" x2="30" y2="20" stroke="#00F5D4" stroke-width="0.75" stroke-dasharray="2 3"/>
+          </svg>
+        </div>
+        <span class="font-mono text-[10px] tracking-[0.25em] uppercase text-off-white/80 group-hover:text-lime transition-colors duration-300">
+          Webworks Studio
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex items-center gap-8 font-mono text-[11px] tracking-[0.15em] uppercase text-off-white/60">
+        <li><a href="#work" class="hover:text-lime transition-colors">Work</a></li>
+        <li><a href="#capabilities" class="hover:text-lime transition-colors">Capabilities</a></li>
+        <li><a href="#studio" class="hover:text-lime transition-colors">Studio</a></li>
+        <li><a href="#partnerships" class="hover:text-lime transition-colors">Partnerships</a></li>
+        <li><a href="#contact" class="hover:text-lime transition-colors">Contact</a></li>
+      </ul>
+
+      <!-- Action & Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <a href="#contact" class="hidden md:inline-flex btn-primary text-[11px] py-2.5 px-5">
+          Start a Project
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-off-white/70 hover:text-off-white focus:outline-none" aria-label="Toggle Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="hidden md:hidden bg-obsidian border-b border-off-white/10 px-6 py-6 font-mono text-xs uppercase tracking-widest space-y-4">
+      <a href="#work" class="block py-2 text-off-white/70 hover:text-lime mobile-link">01 // Work</a>
+      <a href="#capabilities" class="block py-2 text-off-white/70 hover:text-lime mobile-link">02 // Capabilities</a>
+      <a href="#studio" class="block py-2 text-off-white/70 hover:text-lime mobile-link">03 // Studio</a>
+      <a href="#partnerships" class="block py-2 text-off-white/70 hover:text-lime mobile-link">04 // Partnerships</a>
+      <a href="#contact" class="block py-2 text-lime mobile-link">05 // Start a Project →</a>
+    </div>
+  </header>
+
+  <!-- Hero Section (Fit to Screen) -->
+  <section id="hero" class="relative h-screen min-h-[600px] max-h-[1080px] flex flex-col justify-between bg-obsidian text-off-white overflow-hidden pt-20 pb-4 lg:pt-24 lg:pb-6">
+    <div class="absolute inset-0 grid-overlay opacity-50 pointer-events-none"></div>
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none hidden lg:block opacity-40" style="background: radial-gradient(circle, rgba(0, 245, 212, 0.12) 0%, rgba(6, 7, 7, 0) 70%);"></div>
+
+    <div class="absolute top-0 left-0 right-0 h-px bg-off-white/10"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-off-white/10"></div>
+    <div class="absolute top-0 bottom-0 left-[33.33%] w-px bg-off-white/[0.04] hidden lg:block pointer-events-none"></div>
+    <div class="absolute top-0 bottom-0 left-[66.66%] w-px bg-off-white/[0.04] hidden lg:block pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 w-full flex-1 flex flex-col justify-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 xl:col-span-8 max-w-2xl">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="font-mono text-[10px] tracking-widest uppercase text-lime">01 // Independent Technology Studio</span>
+            <div class="hidden sm:flex items-center gap-2 border border-lime/30 bg-lime/10 px-2.5 py-0.5 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-lime animate-pulse"></span>
+              <span class="font-mono text-[9px] text-lime tracking-widest uppercase">Available for Projects</span>
+            </div>
+          </div>
+
+          <h1 class="font-grotesk font-bold text-4xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl tracking-tight uppercase text-off-white leading-[0.92]">
+            Engineered<br>
+            <span class="text-lime">for What's</span><br>
+            Next.
+          </h1>
+
+          <p class="mt-5 text-sm sm:text-base text-off-white/60 leading-relaxed font-inter max-w-lg">
+            Webworks Studio designs and develops digital experiences, flagship websites, and bespoke web applications for brands that demand technical rigor and visual distinction.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#work" class="btn-primary">
+              Explore Our Work
+              <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <a href="#contact" class="btn-outline">
+              Start a Project
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Vector Gyroscope -->
+        <div class="lg:col-span-5 xl:col-span-4 hidden lg:flex items-center justify-center relative">
+          <div id="hero-gyro" class="relative w-[420px] h-[420px] xl:w-[460px] xl:h-[460px] flex items-center justify-center transition-transform duration-300 ease-out">
+            <svg viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" aria-hidden="true">
+              <rect x="1" y="1" width="518" height="518" stroke="rgba(0, 245, 212, 0.15)" stroke-width="0.75"/>
+              <line x1="260" y1="10" x2="260" y2="510" stroke="rgba(0, 245, 212, 0.12)" stroke-width="0.5" stroke-dasharray="4 6"/>
+              <line x1="10" y1="260" x2="510" y2="260" stroke="rgba(0, 245, 212, 0.12)" stroke-width="0.5" stroke-dasharray="4 6"/>
+
+              <g class="spin-ring-1">
+                <polygon points="260,60 460,260 260,460 60,260" stroke="#00F5D4" stroke-width="0.75" stroke-opacity="0.35" fill="none"/>
+                <circle cx="260" cy="260" r="150" stroke="#00F5D4" stroke-width="0.5" stroke-dasharray="6 8" stroke-opacity="0.25" fill="none"/>
+              </g>
+
+              <g class="spin-ring-2">
+                <rect x="150" y="150" width="220" height="220" stroke="#00F5D4" stroke-width="0.75" stroke-opacity="0.4" fill="none" transform="rotate(45 260 260)"/>
+                <circle cx="260" cy="260" r="95" stroke="#00F5D4" stroke-width="1" stroke-opacity="0.5" fill="none"/>
+              </g>
+
+              <circle cx="260" cy="260" r="16" fill="rgba(0, 245, 212, 0.15)"/>
+              <rect x="251" y="251" width="18" height="18" stroke="#00F5D4" stroke-width="1.5" fill="none" transform="rotate(45 260 260)"/>
+              <circle cx="260" cy="260" r="3" fill="#00F5D4"/>
+
+              <path d="M12 24 L12 12 L24 12" stroke="#00F5D4" stroke-width="1"/>
+              <path d="M508 24 L508 12 L496 12" stroke="#00F5D4" stroke-width="1"/>
+              <path d="M12 496 L12 508 L24 508" stroke="#00F5D4" stroke-width="1"/>
+              <path d="M508 496 L508 508 L496 508" stroke="#00F5D4" stroke-width="1"/>
+
+              <text x="20" y="35" fill="#00F5D4" font-size="8" font-family="monospace" letter-spacing="3" opacity="0.7">WW-STUDIO // SYS-V2</text>
+              <text x="380" y="35" fill="#00F5D4" font-size="8" font-family="monospace" letter-spacing="2" opacity="0.6">LOC: 51.5°N</text>
+              <text x="20" y="495" fill="rgba(236, 239, 234, 0.4)" font-size="8" font-family="monospace" letter-spacing="2">ROT: 3D-VECTOR</text>
+              <text x="430" y="495" fill="#00F5D4" font-size="8" font-family="monospace" letter-spacing="2" opacity="0.7">60 FPS</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD Status Bar -->
+    <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 w-full pt-4 border-t border-off-white/10">
+      <div class="flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+        <div class="flex items-center gap-6 sm:gap-10">
+          <div>
+            <p class="text-[9px] uppercase tracking-widest text-off-white/30">Studio Status</p>
+            <p class="text-[11px] text-lime mt-0.5 flex items-center gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-lime inline-block"></span>
+              Active Engagement
+            </p>
+          </div>
+          <div class="h-6 w-px bg-off-white/10 hidden sm:block"></div>
+          <div>
+            <p class="text-[9px] uppercase tracking-widest text-off-white/30">Speciality</p>
+            <p class="text-[11px] text-off-white/70 mt-0.5">Digital Experiences</p>
+          </div>
+          <div class="h-6 w-px bg-off-white/10 hidden sm:block"></div>
+          <div class="hidden md:block">
+            <p class="text-[9px] uppercase tracking-widest text-off-white/30">Core Stack</p>
+            <p class="text-[11px] text-off-white/70 mt-0.5">Next.js 15 · TypeScript</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 text-off-white/40 text-[10px] uppercase tracking-widest">
+          <span class="hidden sm:inline">Scroll to explore</span>
+          <svg class="w-3.5 h-3.5 text-lime animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Work Section -->
+  <section id="work" class="py-28 max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div>
+        <span class="font-mono text-xs text-lime uppercase tracking-widest">02 // Selected Work</span>
+        <h2 class="font-grotesk font-bold text-4xl md:text-5xl lg:text-6xl mt-4 tracking-tight">
+          Concept Projects
+        </h2>
+      </div>
+      <p class="text-off-white/40 text-sm max-w-sm">
+        Independent concept projects demonstrating bespoke visual craft, data hierarchy, and technical engineering.
+      </p>
+    </div>
+
+    <!-- Notice -->
+    <div class="mb-12 border border-off-white/15 bg-graphite/40 px-6 py-4 flex items-start gap-4">
+      <span class="font-mono text-[10px] tracking-widest uppercase text-lime mt-0.5">Concept Note</span>
+      <p class="text-xs sm:text-sm text-off-white/50 leading-relaxed">
+        The projects below are independent concept demonstrations designed and developed by Webworks Studio. No fabricated client names or fictitious business metrics are used.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <!-- 01 VELOCITY -->
+      <div class="border border-off-white/10 bg-graphite/30 hover:border-lime/40 transition-all duration-300 p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-xs text-lime">01 // AUTOMOTIVE</span>
+              <span class="font-mono text-[9px] bg-lime/10 text-lime px-2 py-0.5 border border-lime/20">Concept</span>
+            </div>
+            <h3 class="font-grotesk font-bold text-4xl md:text-5xl text-off-white tracking-tight" style="color: #C8A96E">VELOCITY</h3>
+            <p class="text-off-white/60 text-sm leading-relaxed">
+              High-performance automotive digital experience built for vehicle discovery, inventory filtering, and VIP demonstration enquiry flows.
+            </p>
+            <div className="pt-2">
+              <div class="grid grid-cols-3 gap-2 font-mono text-xs text-off-white/70">
+                <div class="p-2.5 bg-obsidian border border-off-white/10"><p class="text-[9px] text-off-white/30 uppercase">Gran Turismo</p><p class="text-lime font-bold">520 hp</p></div>
+                <div class="p-2.5 bg-obsidian border border-off-white/10"><p class="text-[9px] text-off-white/30 uppercase">Starting At</p><p class="text-lime font-bold">₹ 85,00,000</p></div>
+                <div class="p-2.5 bg-obsidian border border-off-white/10"><p class="text-[9px] text-off-white/30 uppercase">0–60 MPH</p><p class="text-lime font-bold">3.8s</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6 bg-[#0A0A0A] border border-off-white/10 p-6 flex items-center justify-center">
+            <svg viewBox="0 0 400 220" fill="none" class="w-full h-48 opacity-80" aria-hidden="true">
+              <path d="M50 145 L80 110 L140 100 L260 100 L320 110 L350 145 Z" stroke="#C8A96E" stroke-width="1.5" fill="none"/>
+              <ellipse cx="120" cy="148" rx="26" ry="13" stroke="#C8A96E" stroke-width="1.5" fill="none"/>
+              <ellipse cx="280" cy="148" rx="26" ry="13" stroke="#C8A96E" stroke-width="1.5" fill="none"/>
+              <text x="30" y="30" fill="#C8A96E" font-size="9" font-family="monospace" letter-spacing="3">VELOCITY — SPEC S-12</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 NOIR -->
+      <div class="border border-off-white/10 bg-graphite/30 hover:border-lime/40 transition-all duration-300 p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-xs text-lime">02 // HOSPITALITY</span>
+              <span class="font-mono text-[9px] bg-lime/10 text-lime px-2 py-0.5 border border-lime/20">Concept</span>
+            </div>
+            <h3 class="font-grotesk font-bold text-4xl md:text-5xl text-off-white tracking-tight" style="color: #C4A882">NOIR</h3>
+            <p class="text-off-white/60 text-sm leading-relaxed">
+              Progressive dining gastronomy website balancing dark negative space with an interactive 9-course degustation menu and table reservations.
+            </p>
+            <div class="flex items-center gap-4 font-mono text-xs pt-2">
+              <span class="text-[#C4A882] font-semibold">Nine Courses — ₹ 14,500</span>
+              <span class="text-off-white/20">|</span>
+              <span class="text-off-white/50">Pairing Experience — ₹ 8,500</span>
+            </div>
+          </div>
+          <div class="lg:col-span-6 bg-[#0D0B08] border border-off-white/10 p-6 flex items-center justify-center">
+            <svg viewBox="0 0 400 220" fill="none" class="w-full h-48 opacity-80" aria-hidden="true">
+              <circle cx="200" cy="110" r="60" stroke="#C4A882" stroke-width="0.75" stroke-dasharray="4 4"/>
+              <line x1="80" y1="110" x2="320" y2="110" stroke="#C4A882" stroke-width="0.5"/>
+              <circle cx="200" cy="70" r="3" fill="#C4A882"/>
+              <text x="30" y="30" fill="#C4A882" font-size="9" font-family="monospace" letter-spacing="3">NOIR — DEGUSTATION</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 NEXUS -->
+      <div class="border border-off-white/10 bg-graphite/30 hover:border-lime/40 transition-all duration-300 p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-xs text-lime">03 // WEB APPLICATION</span>
+              <span class="font-mono text-[9px] bg-lime/10 text-lime px-2 py-0.5 border border-lime/20">Concept</span>
+            </div>
+            <h3 class="font-grotesk font-bold text-4xl md:text-5xl text-off-white tracking-tight" style="color: #4A8FFF">NEXUS</h3>
+            <p class="text-off-white/60 text-sm leading-relaxed">
+              High-density distributed cloud telemetry dashboard with real-time stream buffers, multi-region cluster health, and live SQL metrics.
+            </p>
+            <div class="flex items-center gap-4 font-mono text-xs pt-2">
+              <span class="text-[#4A8FFF] font-semibold">18.4ms Global Latency</span>
+              <span class="text-off-white/20">|</span>
+              <span class="text-lime">128 Healthy Nodes</span>
+            </div>
+          </div>
+          <div class="lg:col-span-6 bg-[#080B10] border border-off-white/10 p-6 flex items-center justify-center">
+            <svg viewBox="0 0 400 220" fill="none" class="w-full h-48 opacity-80" aria-hidden="true">
+              <polyline points="40,160 90,130 140,150 200,90 260,110 320,60 360,80" stroke="#4A8FFF" stroke-width="1.75"/>
+              <circle cx="320" cy="60" r="4" fill="#00F5D4"/>
+              <text x="30" y="30" fill="#4A8FFF" font-size="9" font-family="monospace" letter-spacing="3">NEXUS — TELEMETRY</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section -->
+  <section id="capabilities" class="py-28 bg-graphite border-y border-off-white/10">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="font-mono text-xs text-lime uppercase tracking-widest">03 // What We Do</span>
+          <h2 class="font-grotesk font-bold text-4xl md:text-5xl lg:text-6xl mt-4 tracking-tight">Capabilities</h2>
+        </div>
+        <p class="text-off-white/40 text-sm max-w-xs">Four disciplines executed with precision. No bloated agency retainers or filler offerings.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-off-white/10">
+        <div class="p-8 md:p-12 bg-obsidian group hover:bg-[#0A0D0D] transition-colors">
+          <span class="font-mono text-xs text-lime">01 // DISCIPLINE</span>
+          <h3 class="font-grotesk font-bold text-2xl md:text-3xl mt-4 mb-3 text-off-white group-hover:text-lime transition-colors">Digital Experiences</h3>
+          <p class="text-off-white/50 text-sm leading-relaxed mb-6">Business websites, interactive campaigns, and flagship brand redesigns engineered for extreme performance and elegance.</p>
+          <ul class="font-mono text-xs text-off-white/60 space-y-2">
+            <li>• Custom Next.js Architecture</li>
+            <li>• Sub-Second Core Web Vitals</li>
+            <li>• Motion & Interaction Design</li>
+          </ul>
+        </div>
+
+        <div class="p-8 md:p-12 bg-obsidian group hover:bg-[#0A0D0D] transition-colors">
+          <span class="font-mono text-xs text-lime">02 // DISCIPLINE</span>
+          <h3 class="font-grotesk font-bold text-2xl md:text-3xl mt-4 mb-3 text-off-white group-hover:text-lime transition-colors">Web Applications</h3>
+          <p class="text-off-white/50 text-sm leading-relaxed mb-6">Custom SaaS interfaces, client dashboards, booking systems, and internal tools built for dense daily utility without cognitive drag.</p>
+          <ul class="font-mono text-xs text-off-white/60 space-y-2">
+            <li>• Strict TypeScript Type Safety</li>
+            <li>• Zero-Latency Input States</li>
+            <li>• Real-Time Data Streaming</li>
+          </ul>
+        </div>
+
+        <div class="p-8 md:p-12 bg-obsidian group hover:bg-[#0A0D0D] transition-colors">
+          <span class="font-mono text-xs text-lime">03 // DISCIPLINE</span>
+          <h3 class="font-grotesk font-bold text-2xl md:text-3xl mt-4 mb-3 text-off-white group-hover:text-lime transition-colors">Commerce Systems</h3>
+          <p class="text-off-white/50 text-sm leading-relaxed mb-6">Bespoke storefronts, faceted product catalogues, and friction-free payment checkouts designed to break free from generic store templates.</p>
+          <ul class="font-mono text-xs text-off-white/60 space-y-2">
+            <li>• Headless Commerce Stacks</li>
+            <li>• Fluid Drawer & Cart Interactions</li>
+            <li>• Stripe & Payment Integration</li>
+          </ul>
+        </div>
+
+        <div class="p-8 md:p-12 bg-obsidian group hover:bg-[#0A0D0D] transition-colors">
+          <span class="font-mono text-xs text-lime">04 // DISCIPLINE</span>
+          <h3 class="font-grotesk font-bold text-2xl md:text-3xl mt-4 mb-3 text-off-white group-hover:text-lime transition-colors">Development Partnerships</h3>
+          <p class="text-off-white/50 text-sm leading-relaxed mb-6">White-label web development and technical overflow implementation for branding studios, creative directors, and marketing agencies.</p>
+          <ul class="font-mono text-xs text-off-white/60 space-y-2">
+            <li>• Strict NDA Discretion</li>
+            <li>• Pixel-Fidelity Guarantee</li>
+            <li>• Documented Git Handover</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-28 max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <div class="lg:col-span-4">
+        <span class="font-mono text-xs text-lime uppercase tracking-widest">04 // How We Work</span>
+        <h2 class="font-grotesk font-bold text-4xl md:text-5xl mt-4 tracking-tight">The Process</h2>
+        <p class="mt-6 text-off-white/40 text-sm leading-relaxed">
+          A structured engineering pipeline that removes ambiguity without stifling creative exploration.
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 space-y-4">
+        <div class="p-6 bg-graphite/40 border border-off-white/10 flex items-start gap-6">
+          <span class="font-mono text-lg text-lime font-bold">01</span>
+          <div>
+            <h4 class="font-grotesk font-bold text-xl text-off-white">Discover</h4>
+            <p class="text-sm text-off-white/50 mt-1">Deep alignment on goals, audience, and functional parameters. We eliminate architectural guesswork before typing code.</p>
+          </div>
+        </div>
+        <div class="p-6 bg-graphite/40 border border-off-white/10 flex items-start gap-6">
+          <span class="font-mono text-lg text-lime font-bold">02</span>
+          <div>
+            <h4 class="font-grotesk font-bold text-xl text-off-white">Design</h4>
+            <p class="text-sm text-off-white/50 mt-1">Spatial architecture, typography scale, micro-interactions, and visual systems developed with rigorous intent.</p>
+          </div>
+        </div>
+        <div class="p-6 bg-graphite/40 border border-off-white/10 flex items-start gap-6">
+          <span class="font-mono text-lg text-lime font-bold">03</span>
+          <div>
+            <h4 class="font-grotesk font-bold text-xl text-off-white">Develop</h4>
+            <p class="text-sm text-off-white/50 mt-1">Modern Next.js and TypeScript implementation with clean, maintainable modular components and sub-second loading speeds.</p>
+          </div>
+        </div>
+        <div class="p-6 bg-graphite/40 border border-off-white/10 flex items-start gap-6">
+          <span class="font-mono text-lg text-lime font-bold">04</span>
+          <div>
+            <h4 class="font-grotesk font-bold text-xl text-off-white">Deliver</h4>
+            <p class="text-sm text-off-white/50 mt-1">Full cross-device QA, Lighthouse verification, Git repository handover, and ongoing support retainers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio Manifesto Section -->
+  <section id="studio" class="py-28 bg-graphite border-y border-off-white/10">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div class="lg:col-span-5">
+          <span class="font-mono text-xs text-lime uppercase tracking-widest">05 // Studio Manifesto</span>
+          <h2 class="font-grotesk font-bold text-4xl md:text-5xl lg:text-6xl mt-4 tracking-tight leading-tight">
+            Built on<br>
+            <span class="text-lime">Purpose,</span><br>
+            Not Volume.
+          </h2>
+        </div>
+        <div class="lg:col-span-7 space-y-6 text-off-white/60 font-inter text-base leading-relaxed">
+          <p class="text-off-white/80 text-lg">
+            Webworks Studio is an independent technology and development studio focused on thoughtful design, reliable engineering, and useful digital experiences.
+          </p>
+          <p>
+            We operate deliberately without agency overhead, unnecessary bureaucracy, or account managers buffering the conversation. When you work with us, you work directly with the developers and designers building your product.
+          </p>
+          <p>
+            No bloated teams, no vanity metrics, and no templates. Only bespoke, production-quality code built to endure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agency Partnerships Section -->
+  <section id="partnerships" class="py-28 max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6 space-y-6">
+        <span class="font-mono text-xs text-lime uppercase tracking-widest">06 // Partnerships</span>
+        <h2 class="font-grotesk font-bold text-4xl md:text-6xl tracking-tight leading-tight">
+          The Technical<br>
+          Partner You<br>
+          <span class="text-lime">Don't See.</span>
+        </h2>
+        <p class="text-off-white/50 text-base leading-relaxed max-w-md">
+          Webworks Studio provides invisible white-label engineering for marketing agencies, branding studios, and independent designers who need reliable development without adding headcount.
+        </p>
+        <a href="#contact" class="btn-primary inline-flex">
+          Discuss a Partnership
+        </a>
+      </div>
+
+      <div class="lg:col-span-6 space-y-2 font-mono text-xs">
+        <div class="p-4 bg-graphite/40 border border-off-white/10 flex justify-between items-center"><span class="text-off-white/80">01 // Marketing Agencies</span><span class="text-lime">White-Label Web Dev</span></div>
+        <div class="p-4 bg-graphite/40 border border-off-white/10 flex justify-between items-center"><span class="text-off-white/80">02 // Branding Studios</span><span class="text-lime">Pixel-Fidelity Translation</span></div>
+        <div class="p-4 bg-graphite/40 border border-off-white/10 flex justify-between items-center"><span class="text-off-white/80">03 // Freelance Designers</span><span class="text-lime">Technical Co-Pilot</span></div>
+        <div class="p-4 bg-graphite/40 border border-off-white/10 flex justify-between items-center"><span class="text-off-white/80">04 // Creative Professionals</span><span class="text-lime">Bespoke Implementation</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Project Brief Form -->
+  <section id="contact" class="py-28 bg-graphite border-t border-off-white/10">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <!-- Contact Context -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="font-mono text-xs text-lime uppercase tracking-widest">07 // Start a Project</span>
+          <h2 class="font-grotesk font-bold text-4xl md:text-5xl tracking-tight leading-tight">
+            Have something<br>
+            worth building?
+          </h2>
+          <p class="text-off-white/60 text-sm leading-relaxed">
+            Tell us about your project brief. We evaluate architectural feasibility, timeline suitability, and alignment with our studio capabilities.
+          </p>
+
+          <div class="p-6 bg-obsidian border border-off-white/10 space-y-3 font-mono text-xs text-off-white/70">
+            <p class="text-lime uppercase tracking-widest text-[10px]">Studio Coordinates</p>
+            <p>Direct Developer Access: Yes</p>
+            <p>Turnaround SLA: &lt; 24 Working Hours</p>
+            <p>Current Status: Available for Projects</p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="lg:col-span-7">
+          <div class="bg-obsidian border border-off-white/15 p-8 md:p-10">
+            <form id="enquiry-form" class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="font-mono text-xs text-off-white/60 uppercase block mb-2">Your Name *</label>
+                  <input id="form-name" type="text" required placeholder="e.g. Maya Lin" class="w-full bg-graphite border border-off-white/20 px-4 py-3 font-mono text-xs text-off-white focus:outline-none focus:border-lime">
+                </div>
+                <div>
+                  <label class="font-mono text-xs text-off-white/60 uppercase block mb-2">Brand or Business</label>
+                  <input id="form-brand" type="text" placeholder="e.g. Studio Vertex" class="w-full bg-graphite border border-off-white/20 px-4 py-3 font-mono text-xs text-off-white focus:outline-none focus:border-lime">
+                </div>
+              </div>
+
+              <div>
+                <label class="font-mono text-xs text-off-white/60 uppercase block mb-2">Email Address *</label>
+                <input id="form-email" type="email" required placeholder="e.g. maya@studiovertex.design" class="w-full bg-graphite border border-off-white/20 px-4 py-3 font-mono text-xs text-off-white focus:outline-none focus:border-lime">
+              </div>
+
+              <div>
+                <label class="font-mono text-xs text-off-white/60 uppercase block mb-2">Project Type *</label>
+                <select id="form-type" class="w-full bg-graphite border border-off-white/20 px-4 py-3 font-mono text-xs text-off-white focus:outline-none focus:border-lime">
+                  <option value="Digital Experience / Website">Digital Experience / Website</option>
+                  <option value="Custom Web Application">Custom Web Application</option>
+                  <option value="Commerce System">Commerce System</option>
+                  <option value="Agency White-Label Partnership">Agency White-Label Partnership</option>
+                  <option value="Website Redesign">Website Redesign</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="font-mono text-xs text-off-white/60 uppercase block mb-2">Anticipated Budget Range (INR) *</label>
+                <select id="form-budget" class="w-full bg-graphite border border-off-white/20 px-4 py-3 font-mono text-xs text-lime font-semibold focus:outline-none focus:border-lime">
+                  <option value="₹ 3,00,000 — ₹ 6,00,000">₹ 3,00,000 — ₹ 6,00,000</option>
+                  <option value="₹ 6,00,000 — ₹ 15,00,000">₹ 6,00,000 — ₹ 15,00,000</option>
+                  <option value="₹ 15,00,000 — ₹ 35,00,000">₹ 15,00,000 — ₹ 35,00,000</option>
+                  <option value="₹ 35,00,000+">₹ 35,00,000+</option>
+                  <option value="Monthly Retainer / Partnership">Monthly Retainer / Partnership</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="font-mono text-xs text-off-white/60 uppercase block mb-2">Project Description *</label>
+                <textarea id="form-message" rows="4" required placeholder="Tell us about timeline, specifications, assets ready, or technical goals..." class="w-full bg-graphite border border-off-white/20 px-4 py-3 font-mono text-xs text-off-white focus:outline-none focus:border-lime"></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary w-full justify-center py-4 text-xs">
+                Transmit Project Brief
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+
+              <div id="form-status" class="hidden p-4 font-mono text-xs text-center border"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-obsidian border-t border-off-white/10 py-16">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-xs text-off-white/40">
+      <div class="flex items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="24" height="24" fill="none" class="w-6 h-6">
+          <rect x="1" y="1" width="38" height="38" stroke="#00F5D4" stroke-width="0.75"/>
+          <line x1="8" y1="32" x2="32" y2="8" stroke="#00F5D4" stroke-width="3"/>
+        </svg>
+        <span>WEBWORKS STUDIO © 2026. ALL RIGHTS RESERVED.</span>
+      </div>
+      <div>
+        <span class="text-lime">ENGINEERED FOR WHAT'S NEXT.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Mouse Parallax for Hero
+    const heroGyro = document.getElementById('hero-gyro');
+    window.addEventListener('mousemove', (e) => {
+      if (!heroGyro) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 22;
+      const y = (e.clientY / window.innerHeight - 0.5) * 22;
+      heroGyro.style.transform = `perspective(1000px) rotateX(${-y * 0.4}deg) rotateY(${x * 0.4}deg)`;
+    });
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    mobileBtn.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileDrawer.classList.add('hidden'));
+    });
+
+    // Form submission handling
+    const form = document.getElementById('enquiry-form');
+    const statusDiv = document.getElementById('form-status');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      statusDiv.className = 'p-4 font-mono text-xs text-center border border-lime/40 bg-lime/10 text-lime block';
+      statusDiv.textContent = 'Enquiry logged and queued successfully. A studio engineer will respond within 24 hours.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
